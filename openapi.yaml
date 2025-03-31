@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: Web Scraper API
+  version: 1.0.0
+servers:
+  - url: https://gpt-scraper-2.onrender.com
+paths:
+  /scrape:
+    get:
+      summary: Scrape text content from a webpage
+      description: Returns raw text content from any public webpage.
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The full URL of the webpage to scrape.
+      responses:
+        '200':
+          description: Successful scrape
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  content:
+                    type: string
+        '400':
+          description: Missing or invalid URL
+        '500':
+          description: Scraper error
